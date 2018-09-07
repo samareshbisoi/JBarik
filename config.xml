@@ -2,7 +2,7 @@
 <widget id="org.josephbarik.josephbarik" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Joseph Barik</name>
     <description>
-        Official App of Joseph Barik. 
+       josephbarik.org
     </description>
     <author email="support@pocketapp.in" href="http://pocketapp.in">
      PocketApp.in
