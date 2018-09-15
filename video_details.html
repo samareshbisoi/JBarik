@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="datajs/globalvar.js"></script>
 <script type="text/javascript" src="datajs/jq.js"></script>
-
-<script type="text/javascript" src="datajs/ann.js"></script>	
+<script type="text/javascript" src="datajs/video_details.js"></script>
 <script type="text/javascript" src="datajs/leftmenu.js"></script>
 <script type="text/javascript" src="datajs/user_menu.js"></script>
+<script type="text/javascript" src="datajs/submit_content_review.js"></script>
 </head>
 <body id="mobile_wrap">
 
@@ -36,10 +36,7 @@
     </div>
 
     <div class="panel panel-right panel-reveal">
-      <div class="user_login_info" id="user_info_box">
-	  
-               
-      </div>
+      <div class="user_login_info" id="user_info_box">      </div>
     </div>
 
     <div class="views">
@@ -49,7 +46,7 @@
 
 
         <div class="pages">
-  <div data-page="blog" class="page no-toolbar no-navbar">
+  <div data-page="blogsingle" class="page no-toolbar no-navbar">
     <div class="page-content">
     
 	<div class="navbarpages">
@@ -59,36 +56,81 @@
 		<a href="#" data-panel="left" class="open-panel">
 			<div class="navbar_right"><img src="images/icons/red/menu.png" alt="" title="" /></div>
 		</a>
-		<a href="index.html">
+		<a href="index.html" data-panel="right" class="open-panel">
 			<div class="navbar_right whitebg"><img src="images/icons/white/home.png" alt="" title="" /></div>
-		</a>					
-	</div>
+		</a>	</div>
 	
      <div id="pages_maincontent">
       
-      <h2 class="page_title">Announcement</h2>
-     <div class="page_single layout_fullwidth_padding">  
-   
-            <div class="list-block">
-               <img src="images/loader.gif" style="display:block;" id="loader" />
-              <ul class="posts" id="listview">
-                
-              </ul>
-              <input type="hidden" id="next_off" value="" />
-            <div onClick="load_more()" id="loadMore">LOAD MORE</div> 
-            <div id="showLess">END</div> 
-            </div>
-			
-       </div>		
-      
-      </div>
-      
-      
+      <a href="service_video.html" class="backto"><img src="images/icons/red/back.png" alt="" title="" /></a>
+      <h2 class="blog_title" id="post_title"></h2>
+	  
+                  <!-- Slider -->
+                 <div class="swiper-container-pages swiper-init" data-effect="slide" data-pagination=".swiper-pagination">
+                    <div class="swiper-wrapper">
+                    
+                      <div class="swiper-slide" id="post_image" style="height:350px;">                       </div>
+                      <!--<div class="swiper-slide">
+			<img src="images/page_photo2.jpg" alt="" title="" />
+                       </div>
+                      <div class="swiper-slide">
+			<img src="images/page_photo3.jpg" alt="" title="" />
+                       </div>	-->	   
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>	
+<div class="page_single layout_fullwidth_padding">	
+          <div class="post_single">
+          <p id="post_body" style="text-align:justify;">          </p>
+            <span class="post_date" id="post_date">24.02.2015</span>
+            <span class="post_author" id="post_author"> <!--<a href="#">By Fresh Box Office Network</a>--></span>
+            <span class="post_comments" id="post_comments"><a id="count_comments" href="#">0</a></span>  <span id="rating"></span>        </div>
+	 <!--<a href="#" data-popup=".popup-social" class="button_full btmint open-popup">SHARE THIS POST</a>-->
+          
+          <div class="buttons-row">
+                <a href="#tab1" class="tab-link active button">Review this Video</a>
+                <a href="#tab2" class="tab-link button">Reviews</a>          </div>
+          
+          <div class="tabs-animated-wrap">
+                <div class="tabs">
+                      <div id="tab1" class="tab active">
+                            <div class="contactform">
+                            <form id="CommentForm"  action="">
+							<input type="hidden" id="review_type" value="video">
+							<input type="hidden" id="review_for_id" value="">
+                            <label>Name:</label>
+                            <input type="text" name="CommentName" id="CommentName" value="" class="form_input" />
+                            <label>Email:</label>
+                            <input type="text" name="CommentEmail" id="CommentEmail" value="" class="form_input" />
+							<label>Rating:</label>
+							<span class="rating" style="font-size:40px;"> 
+																											<i id="s1"  class="fa fa-star-o" onClick="fill_star('1','full')"></i>&nbsp;
+																											<i id="s2"  class="fa fa-star-o" onClick="fill_star('2','full')"></i>&nbsp;
+																											<i id="s3"  class="fa fa-star-o" onClick="fill_star('3','full')"></i>&nbsp;
+																											<i id="s4"  class="fa fa-star-o" onClick="fill_star('4','full')"></i>&nbsp;
+																											<i id="s5"  class="fa fa-star-o" onClick="fill_star('5','full')"></i>				       </span>
+                            <input type="hidden" name="rating" id="rating" value="" class="form_input" />
+                            <label>Comment:</label>
+                            <textarea name="Comment" id="Comment" class="form_textarea" rows="" cols=""></textarea>
+                            <input type="button" name="submit" class="form_submit" id="insert" onClick="sud_data()" value="Submit" />
+                            </form>
+                            </div>
+                      </div>
+
+                      <div id="tab2" class="tab">
+                            <ul class="comments" id="comments">
+                                
+                                <div class="clear"></div>
+                            </ul>
+                      </div> 
+                </div>
+          </div>
+ </div>     
     </div>
   </div>
 </div>
+</div>
 
-        
         <!-- Bottom Toolbar-->
         <div class="toolbar">
               <div class="toolbar-inner">
@@ -99,14 +141,10 @@
               <li ><a href="#" data-popup=".popup-social" class="open-popup"><img src="images/icons/white/shar.png" alt="" title="" /></a></li>
               <li><a href="contact.html"><img src="images/icons/white/contac.png" alt="" title="" /></a></li>              
               </ul>
-              </div>   
+              </div>  
         </div>
-
       </div>
     </div>
-
-
-    
 
 	
     <!-- Login Popup -->
@@ -122,12 +160,10 @@
                 </form>
                 <div class="signup_bottom">
                     <p>Don't have an account?</p>
-                    <a href="#" data-popup=".popup-signup" class="open-popup">SIGN UP</a>
-                </div>
+                    <a href="#" data-popup=".popup-signup" class="open-popup">SIGN UP</a>                </div>
             </div>
             <div class="close_popup_button">
-                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
+                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>            </div>
         </div>
     </div>
 
@@ -145,12 +181,10 @@
 		<h5>- OR REGISTER WITH A SOCIAL ACCOUNT -</h5>
 		<div class="signup_social">
 			<a href="http://www.facebook.com/" class="signup_facebook external">FACEBOOK</a>
-			<a href="http://www.twitter.com/" class="signup_twitter external">TWITTER</a>            
-		</div>		
+			<a href="http://www.twitter.com/" class="signup_twitter external">TWITTER</a>		</div>		
             </div>
             <div class="close_popup_button">
-                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
+                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>            </div>
         </div>
     </div>
 	
@@ -168,8 +202,7 @@
                 </div>
             </div>
             <div class="close_popup_button">
-                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
+                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>            </div>
         </div>
     </div>
 	
@@ -177,14 +210,15 @@
     <div class="popup popup-social">
     <div class="content-block">
       <h4>Social Share</h4>
-      <p>Stay connected with Joseph Barik.</p>
+      <p>Stay connected with Joseph Barik .</p>
       <ul class="social_share">
-      <li><a href="https://twitter.com/barik_joseph" class="external"><img src="images/icons/black/twitter.png" alt="" title="" /><span>TWITTER</span></a></li>
-      <li><a href="https://www.facebook.com/Joseph-Barik-Ministries-811695652356083" class="external"><img src="images/icons/black/facebook.png" alt="" title="" /><span>FACEBOOK</span></a></li>
-      <li><a href="https://plus.google.com/u/1/108926374070516613659" class="external"><img src="images/icons/black/gplus.png" alt="" title="" /><span>GOOGLE</span></a></li>
-      <li><a href="https://www.youtube.com/channel/UCzxjGTOdT4pZiMXoy0b3zTQ" target="_blank" class="external"><img src="images/icons/black/youtube.png" alt="" title="" /><span>YOUTUBE</span></a></li>
-      <li><a href="http://josephbarik.org" target="_blank" class="external"><img src="images/icons/black/website.png" alt="" title="" /><span>VISIT WEBSITE</span></a></li>
-      <li><a href="mailto:info@josephbarik.org" target="_blank" class="external" ><img src="images/icons/black/contact.png" alt="" title="" /><span>EMAIL</span></a></li>      
+      <li><a href="http://twitter.com/" class="external"><img src="images/icons/black/twitter.png" alt="" title="" /><span>TWITTER</span></a></li>
+      <li><a href="https://www.facebook.com/cnmindia/" class="external"><img src="images/icons/black/facebook.png" alt="" title="" /><span>FACEBOOK</span></a></li>
+      <li><a href="http://plus.google.com" class="external"><img src="images/icons/black/gplus.png" alt="" title="" /><span>GOOGLE</span></a></li>
+      <li><a href="https://www.youtube.com/user/TheCNMIndia" target="_blank" class="external"><img src="images/icons/black/youtube.png" alt="" title="" /><span>YOUTUBE</span></a></li>
+      <li><a href="http://cnmindia.org/" target="_blank" class="external"><img src="images/icons/black/website.png" alt="" title="" /><span>VISIT WEBSITE</span></a></li>
+      <li><a href="mailto:info@cnmindia.org" target="_blank" class="external" ><img src="images/icons/black/contact.png" alt="" title="" /><span>EMAIL</span></a></li>
+      
       </ul>
       <div class="close_popup_button"><a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a></div>
     </div>
